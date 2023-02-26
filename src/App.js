@@ -1,5 +1,13 @@
-function App() {
-  return <div className="App"></div>
+import { BrowserRouter } from 'react-router-dom'
+
+import { Switch } from './routes'
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Switch />
+    </BrowserRouter>
+  )
 }
 
 export default App
