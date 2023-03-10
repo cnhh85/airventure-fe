@@ -1,5 +1,7 @@
-function App() {
-  return <div className="App"></div>
+import Switch from './routes'
+
+const App = () => {
+  return <Switch></Switch>
 }
 
 export default App

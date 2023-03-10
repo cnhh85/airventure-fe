@@ -2,17 +2,18 @@ import React from 'react'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import Auth from '../page/auth'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
-export const publicRoute = [
+const publicRoute = [
   {
     name: 'login',
     path: '/login',
-    element: <div />,
+    element: <Auth />,
   },
 ]
-export const privateRoute = [
+const privateRoute = [
   {
     name: 'home',
     path: '/',
@@ -20,10 +21,10 @@ export const privateRoute = [
   },
 ]
 
-export const Switch = () => {
+const Switch = () => {
   return (
     <Routes>
-      <Route path="/" element={<PrivateRoute />}>
+      <Route element={<PrivateRoute />}>
         {privateRoute.map((route) => (
           <Route key={route.name} exact={true} path={route.path} element={route.element} />
         ))}
