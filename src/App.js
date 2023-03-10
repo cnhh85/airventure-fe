@@ -1,7 +1,13 @@
+import { BrowserRouter } from 'react-router-dom'
+
 import Switch from './routes'
 
 const App = () => {
-  return <Switch></Switch>
+  return (
+    <BrowserRouter>
+      <Switch />
+    </BrowserRouter>
+  )
 }
 
 export default App
