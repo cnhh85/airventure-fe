@@ -1,5 +1,20 @@
 import React from 'react'
 
+const navOptions = [
+  {
+    name: 'All Flight',
+    path: '/all-flight',
+  },
+  {
+    name: 'Schedule',
+    path: '/schedule',
+  },
+  {
+    name: 'Reservation',
+    path: '/reservation',
+  },
+]
+
 function Navbar() {
   return (
     <nav className="bg-white h-67 flex items-center justify-between px-32 py-4">
@@ -10,15 +25,15 @@ function Navbar() {
       </div>
       <div className="flex w-full">
         <div className="m-auto">
-          <a href="/all-flight" className="text-gray-700 hover:text-black px-3 py-2 rounded">
-            All Flight
-          </a>
-          <a href="/schedule" className="text-gray-700 hover:text-black px-3 py-2 rounded">
-            Schedule
-          </a>
-          <a href="/reservation" className="text-gray-700 hover:text-black px-3 py-2 rounded">
-            Reservation
-          </a>
+          {navOptions.map((option) => (
+            <a
+              key={option.name}
+              href={option.path}
+              className="text-gray-700 hover:text-black px-5 py-2 rounded"
+            >
+              {option.name}
+            </a>
+          ))}
         </div>
         <div className="ml-3 relative">
           <div className="flex flex-row  ">
