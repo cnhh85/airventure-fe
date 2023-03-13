@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         surface: '#F5F5F5',
+        primary: '#3898D3',
       },
     },
     plugins: [],
