@@ -9,6 +9,7 @@ module.exports = {
       colors: {
         surface: '#F5F5F5',
         primary: '#3898D3',
+        primaryHover: '#2D7AB1',
       },
     },
     plugins: [],
