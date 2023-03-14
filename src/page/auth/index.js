@@ -25,7 +25,10 @@ const Auth = () => {
           />
         </div>
         <div className="flex">
-          <div className="w-[480px] mx-auto py-auto"></div>
+          <div className="w-[480px] mx-auto py-auto">
+            <h3 className="">Welcome back to AirVenture</h3>
+            <p className="">Log in to AirVenture and unlock exclusive flight bookings.</p>
+          </div>
         </div>
       </div>
     </div>
