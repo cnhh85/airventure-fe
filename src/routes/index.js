@@ -3,6 +3,8 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Auth from '../page/auth'
+import BookingHistory from '../page/profile/bookingHistory'
+import Profile from '../page/profile/profile'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
@@ -17,14 +19,23 @@ const publicRoute = [
     path: '/register',
     element: <Auth page="register" />,
   },
-]
-const privateRoute = [
   {
     name: 'home',
     path: '/',
     element: <div />,
   },
+  {
+    name: 'profile',
+    path: '/profile',
+    element: <Profile />,
+  },
+  {
+    name: 'history',
+    path: '/history',
+    element: <BookingHistory />,
+  },
 ]
+export const privateRoute = []
 
 const Switch = () => {
   return (
