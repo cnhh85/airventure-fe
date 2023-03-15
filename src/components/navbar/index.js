@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import Popover from '../Popover'
+import Popover from '../popover'
 
 const navOptions = [
   {

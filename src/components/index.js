@@ -1,8 +1,8 @@
-import Button from './Button'
-import FlightList from './FlightList'
-import InputField from './Input'
+import Button from './button'
+import FlightList from './flightList'
+import InputField from './input'
 // import Modal from './Modal/Modal'
-import Navbar from './Navbar'
-import Popover from './Popover'
+import Navbar from './navbar'
+import Popover from './popover'
 
 export { Button, InputField, Navbar, Popover, FlightList }
