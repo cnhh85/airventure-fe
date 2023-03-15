@@ -1,4 +1,6 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
+
+import Popover from '../Popover'
 
 const navOptions = [
   {
@@ -15,6 +17,24 @@ const navOptions = [
   },
 ]
 
+const profileOptions = [
+  {
+    name: 'Profile',
+    path: '/profile',
+    iconName: 'person-outline',
+  },
+  {
+    name: 'Booking history',
+    path: '/history',
+    iconName: 'time-outline',
+  },
+  {
+    name: 'Logout',
+    path: '/logout',
+    iconName: 'log-out-outline',
+  },
+]
+
 function Navbar() {
   return (
     <nav className="bg-white h-67 flex items-center justify-between px-32 py-4">
@@ -26,40 +46,25 @@ function Navbar() {
       <div className="flex w-full">
         <div className="m-auto">
           {navOptions.map((option) => (
-            <a
+            <Link
               key={option.name}
-              href={option.path}
+              to={option.path}
               className="text-gray-700 hover:text-black px-5 py-2 rounded"
             >
               {option.name}
-            </a>
+            </Link>
           ))}
         </div>
-        <div className="ml-3 relative">
-          <div className="flex flex-row  ">
-            <button className="flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out border border-solid border-[#DBDBDB] px-2 py-1 rounded-full">
-              <img
-                className="h-8 w-8 rounded-full object-cover"
-                src="https://randomuser.me/api/portraits/women/68.jpg"
-                alt="Profile"
-              />
-              <div className="text-gray-700 text-sm font-semibold ml-2">Jane Doe</div>
-            </button>
+        <Popover options={profileOptions}>
+          <div className="flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out border border-solid border-[#DBDBDB] px-2 py-1 rounded-full">
+            <img
+              className="h-8 w-8 rounded-full object-cover"
+              src="https://randomuser.me/api/portraits/women/68.jpg"
+              alt="Profile"
+            />
+            <div className="text-gray-700 text-sm font-semibold ml-2">Jane Doe</div>
           </div>
-          <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
-            <div className="py-1 rounded-md bg-white shadow-xs">
-              <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Profile
-              </a>
-              <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Settings
-              </a>
-              <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                Sign out
-              </a>
-            </div>
-          </div>
-        </div>
+        </Popover>
       </div>
     </nav>
   )
