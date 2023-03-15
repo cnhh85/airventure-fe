@@ -10,7 +10,12 @@ const publicRoute = [
   {
     name: 'login',
     path: '/login',
-    element: <Auth />,
+    element: <Auth page="login" />,
+  },
+  {
+    name: 'register',
+    path: '/register',
+    element: <Auth page="register" />,
   },
 ]
 const privateRoute = [
