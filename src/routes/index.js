@@ -2,25 +2,43 @@ import React from 'react'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import Auth from '../page/auth'
 import Home from '../page/home'
+import BookingHistory from '../page/profile/bookingHistory'
+import Profile from '../page/profile/profile'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
-export const publicRoute = [
+const publicRoute = [
   {
     name: 'login',
     path: '/login',
-    element: <div />,
+    element: <Auth page="login" />,
+  },
+  {
+    name: 'register',
+    path: '/register',
+    element: <Auth page="register" />,
   },
   {
     name: 'home',
     path: '/',
     element: <Home />,
   },
+  {
+    name: 'profile',
+    path: '/profile',
+    element: <Profile />,
+  },
+  {
+    name: 'history',
+    path: '/history',
+    element: <BookingHistory />,
+  },
 ]
 export const privateRoute = []
 
-export const Switch = () => {
+const Switch = () => {
   return (
     <Routes>
       <Route element={<PrivateRoute />}>
