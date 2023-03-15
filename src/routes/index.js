@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import BookingHistory from '../page/profile/bookingHistory'
+import Profile from '../page/profile/profile'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
@@ -11,14 +13,23 @@ export const publicRoute = [
     path: '/login',
     element: <div />,
   },
-]
-export const privateRoute = [
   {
     name: 'home',
     path: '/',
     element: <div />,
   },
+  {
+    name: 'profile',
+    path: '/profile',
+    element: <Profile />,
+  },
+  {
+    name: 'history',
+    path: '/history',
+    element: <BookingHistory />,
+  },
 ]
+export const privateRoute = []
 
 export const Switch = () => {
   return (
