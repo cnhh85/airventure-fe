@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 
-import { Switch } from './routes'
+import Switch from './routes'
 
 const App = () => {
   return (
