@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Routes, Route, Navigate } from 'react-router-dom'
 
+import Home from '../page/home'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
-import Home from './page/home'
 
 export const publicRoute = [
   {
