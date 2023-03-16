@@ -3,8 +3,10 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Auth from '../page/auth'
-import BookingHistory from '../page/profile/bookingHistory'
-import Profile from '../page/profile/profile'
+import FlightDetail from '../page/flightDetail'
+import ReservationList from '../page/reservationList'
+import BookingHistory from '../page/user/bookingHistory'
+import Profile from '../page/user/profile'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
@@ -33,6 +35,16 @@ const publicRoute = [
     name: 'history',
     path: '/history',
     element: <BookingHistory />,
+  },
+  {
+    name: 'reservation',
+    path: '/reservation',
+    element: <ReservationList />,
+  },
+  {
+    name: 'flight-detail',
+    path: '/flight-detail',
+    element: <FlightDetail />,
   },
 ]
 export const privateRoute = []

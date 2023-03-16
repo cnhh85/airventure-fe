@@ -1,6 +1,6 @@
-import { Navbar, InputField, Button } from '../../components'
+import { Navbar, InputField, Button } from '../../../components'
 
-export const profile = () => {
+export const Profile = () => {
   return (
     <div className="bg-surface h-screen">
       <Navbar />
@@ -38,4 +38,4 @@ export const profile = () => {
     </div>
   )
 }
-export default profile
+export default Profile
