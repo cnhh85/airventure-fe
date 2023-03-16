@@ -18,14 +18,14 @@ const Home = () => {
     setIsOpenDate(!isOpenDate)
   }
   return (
-    <div>
-      <div className="mt-20 relative ">
-        <h2 className="absolute text-center w-full font-[700] text-[57px] text-white top-12 justify-center items-center">
+    <div className="min-h-screen">
+      <div className="pt-20 relative ">
+        <h2 className="absolute text-center w-full font-[700] text-[57px] text-white top-28 justify-center items-center">
           Let’s explore the world
         </h2>
         <img src={BackGround} alt="" className="w-screen" />
-        <div className="absolute w-full top-[80%] flex">
-          <div className="w-[1024px] h-[240px] bg-white mx-auto p-9 rounded shadow-sm">
+        <div className="absolute w-full top-[85%] flex">
+          <div className="w-[1024px] h-[240px] bg-white mx-auto p-9 rounded-xl shadow-sm">
             <h3 className="text-[#1A1C1E] font-[400] text-[24px]">Search Flight</h3>
             <p className="text-[14px] font-[400] text-[#72787E]">
               Find your flight by choosing your destination
@@ -176,7 +176,7 @@ const Home = () => {
                   </div>
                 </button>
               </div>
-              <div className="flex rounded-xl bg-[#EDEDED] w-[250px]">
+              <div className="flex rounded-xl bg-[#EDEDED] w-[250px] mr-4">
                 <button
                   className="px-5 py-2 cursor-pointer text-left relative w-full"
                   onClick={toggleDate}
@@ -244,13 +244,17 @@ const Home = () => {
                 </button>
               </div>
 
-              <div className="flex rounded-xl">
-                <svg xmlns={SearchIcon}></svg>
+              <div className="flex rounded-xl bg-[#3898D3] w-[130px] h-[80px] text-center items-center justify-center cursor-pointer">
+                <div className="">
+                  <img src={SearchIcon} alt="" className="mx-auto" />
+                  <p className="text-white">Browse</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div className="bg-[#EDEDED] w-screen h-screen"></div>
     </div>
   )
 }
