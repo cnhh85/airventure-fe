@@ -28,7 +28,7 @@ function BookingHistory() {
   return (
     <Fragment>
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">Booking History</h1>
+      <h1 className="text-3xl font-semibold text-center my-8 mt-28">Booking History</h1>
       <div className="grid grid-cols-12 w-4/5 mx-auto gap-6">
         <div className="col-span-3 w-full bg-white rounded-xl">
           <Filter />

@@ -50,7 +50,7 @@ function ReservationList() {
         <ConfirmModal cancelModal={handleModalClick} />
       </Modal>
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">My Reservation</h1>
+      <h1 className="text-3xl font-semibold text-center my-8 mt-28">My Reservation</h1>
       <div className="w-4/5 mx-auto mb-4">
         <FlightItem
           price={flightDetail.price}

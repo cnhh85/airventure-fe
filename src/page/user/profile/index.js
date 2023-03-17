@@ -6,7 +6,7 @@ export const Profile = () => {
   return (
     <Fragment>
       <Navbar />
-      <div className="container my-10 rounded-xl bg-white w-[766px] m-auto p-16 ">
+      <div className="container my-10 rounded-xl bg-white w-[766px] m-auto p-16 mt-28">
         <div className="flex flex-col w-3/4">
           <h2 className="text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
             User account settings
