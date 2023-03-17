@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import { get } from '../../utils/ApiCaller'
 import LocalStorageUtils from '../../utils/LocalStorageUtils'
 import Popover from '../popover'
 
@@ -48,10 +49,19 @@ function Navbar() {
   const [image, setImage] = useState(null)
 
   useEffect(() => {
+    const jwtUser = LocalStorageUtils.getJWTUser()
+    const token = LocalStorageUtils.getToken()
     const getUserInfo = async () => {
-      const user = await LocalStorageUtils.getUser()
-      setUserInfo(user.user)
-      setImage(user.image)
+      // const user = await LocalStorageUtils.getUser()
+      const promiseResult = await get(
+        `/v1/api/customers/get-by-account/${jwtUser.id}`,
+        {},
+        {},
+        { Authorization: `Bearer ${token}` }
+      )
+      const user = promiseResult.data.data
+      setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
+      setImage(user.account?.image)
     }
     getUserInfo()
   }, [])

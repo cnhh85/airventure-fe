@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Navbar, InputField, Button } from '../../../components'
 
 import { LOCALSTORAGE_TOKEN_NAME } from '../../../config'
-import { put } from '../../../utils/ApiCaller'
+import { get, put } from '../../../utils/ApiCaller'
 import LocalStorageUtils from '../../../utils/LocalStorageUtils'
 
 export const Profile = () => {
@@ -23,19 +23,26 @@ export const Profile = () => {
   const onGenderChange = (event) => setGender(event.target.value)
 
   useEffect(() => {
+    const jwtUser = LocalStorageUtils.getJWTUser()
+    const token = LocalStorageUtils.getToken()
     const getUserInfo = async () => {
-      const user = await LocalStorageUtils.getUser()
-      setUserInfo(user.user)
-      setImage(user.image)
-      setFirstName(user.user.firstName)
-      setEmail(user.user.email)
-      setGender(user.user.gender)
-      setLastName(user.user.lastName)
-      setPhoneNumber(user.user.phoneNumber)
+      const promiseResult = await get(
+        `/v1/api/customers/get-by-account/${jwtUser.id}`,
+        {},
+        {},
+        { Authorization: `Bearer ${token}` }
+      )
+      const user = promiseResult.data.data
+      setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
+      setImage(user.account?.image)
+      setFirstName(user.firstName)
+      setEmail(user.account?.email)
+      setGender(user.gender)
+      setLastName(user.lastName)
+      setPhoneNumber(user.phoneNumber)
     }
     getUserInfo()
   }, [])
-  const user = LocalStorageUtils.getJWTUser()
 
   const onSaveChange = async (event) => {
     event.preventDefault()
