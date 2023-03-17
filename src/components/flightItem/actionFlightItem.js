@@ -10,7 +10,7 @@ function actionFlightItem({
   return (
     <div
       className={
-        isFullWidth
+        isFullWidth && buttonProps.length > 0
           ? `flex flex-row justify-between w-full`
           : `mx-auto flex flex-col justify-around`
       }
@@ -21,23 +21,32 @@ function actionFlightItem({
           <h2 className="text-2xl text-slate-600 font-semibold">{formatNumberWithCommas(price)}</h2>
           <h4 className="font-semibold text-slate-400">VNĐ</h4>
         </div>
+        <h2
+          className={`text-2xl text-${ticketStatus === 'Cancelled' ? 'red' : ''}${
+            ticketStatus === 'Issued' ? 'indigo' : ''
+          }${ticketStatus === 'Pending' ? 'slate' : ''}-600 font-semibold`}
+        >
+          {ticketStatus}
+        </h2>
       </div>
-      <div className={isFullWidth ? `flex flex-col my-auto space-y-4` : `mx-auto`}>
-        {buttonProps && buttonProps.length > 0 ? (
-          buttonProps.map((buttonProp, index) => {
-            return (
-              <Button
-                key={index}
-                iconName={buttonProp.iconName}
-                content={buttonProp.buttonName}
-                onClick={buttonProp.onClickButton}
-                variant={buttonProp.variant}
-              />
-            )
-          })
-        ) : (
-          <h2 className="text-2xl text-indigo-600 font-semibold">{ticketStatus}</h2>
-        )}
+      <div
+        className={
+          isFullWidth && buttonProps.length > 0 ? `flex flex-col my-auto space-y-4` : `mx-auto`
+        }
+      >
+        {buttonProps && buttonProps.length > 0
+          ? buttonProps.map((buttonProp, index) => {
+              return (
+                <Button
+                  key={index}
+                  iconName={buttonProp.iconName}
+                  content={buttonProp.buttonName}
+                  onClick={buttonProp.onClickButton}
+                  variant={buttonProp.variant}
+                />
+              )
+            })
+          : null}
       </div>
     </div>
   )

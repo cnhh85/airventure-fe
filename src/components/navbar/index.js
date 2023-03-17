@@ -11,10 +11,6 @@ const navOptions = [
     path: '/all-flight',
   },
   {
-    name: 'Schedule',
-    path: '/schedule',
-  },
-  {
     name: 'Reservation',
     path: '/reservation',
   },
