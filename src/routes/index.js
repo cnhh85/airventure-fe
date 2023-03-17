@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 
 import Auth from '../page/auth'
 import FlightDetail from '../page/flightDetail'
+import Home from '../page/home'
 import ReservationList from '../page/reservationList'
 import BookingHistory from '../page/user/bookingHistory'
 import Profile from '../page/user/profile'
@@ -24,7 +25,7 @@ const publicRoute = [
   {
     name: 'home',
     path: '/',
-    element: <div />,
+    element: <Home />,
   },
   {
     name: 'profile',
