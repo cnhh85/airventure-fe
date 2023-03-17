@@ -1,11 +1,14 @@
 import { useState, Fragment } from 'react'
 
-import { FlightDetailInfo, Navbar, Button } from '../../components'
+import { FlightDetailInfo, Navbar, Button, Modal } from '../../components'
 import InfoFlightItem from '../../components/flightItem/infoFlightItem'
 
 import { formatNumberWithCommas } from '../../utils/parser'
+import ContactInfoModal from './contactInfoModal'
 
 function FlightDetail() {
+  const [showModal, setShowModal] = useState(false)
+
   const [flightDetail, setFlightDetail] = useState({
     aircraftCode: 'ABA254',
     aircraftName: 'AIRBUS A350',
@@ -19,12 +22,15 @@ function FlightDetail() {
     arrivalCityName: 'Phu Quoc',
     price: 1200000,
   })
-  const calculateTotalPrice = () => {
-    //price * tax 5%
-    return flightDetail.price + flightDetail.price * 0.05
+  const handleModalClick = () => {
+    setShowModal(false)
   }
+
   return (
     <Fragment>
+      <Modal showModal={showModal} onClick={handleModalClick}>
+        <ContactInfoModal cancelModal={handleModalClick} onClickBookFlight={() => {}} />
+      </Modal>
       <Navbar />
       <div className="grid grid-cols-12 w-4/5 mx-auto gap-6 my-10">
         <div className="col-span-7 h-full bg-white rounded-xl divide-y-2">
@@ -76,7 +82,13 @@ function FlightDetail() {
             </div>
           </div>
           <div className="py-10 px-12">
-            <Button isWidthFull={true} content={'Book Fight'} />
+            <Button
+              isWidthFull={true}
+              content={'Book Fight'}
+              onClick={() => {
+                setShowModal(true)
+              }}
+            />
           </div>
         </div>
       </div>
