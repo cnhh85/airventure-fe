@@ -2,10 +2,24 @@ import { calculateDuration } from '../../../utils/parser'
 import RouteFlightItem from './routeFlightItem'
 import TimeFlightItem from './timeFlightItem'
 
-function InfoFlightItem({ departureTime, arrivalTime, departureCode, arrivalCode }) {
+function InfoFlightItem({
+  seatCode,
+  reservationCode,
+  departureTime,
+  arrivalTime,
+  departureCode,
+  arrivalCode,
+}) {
   return (
     <div>
-      <h3 className="text-base text-slate-600 font-semibold mb-6">AirVenture</h3>
+      <div className="flex justify-between">
+        <h3 className="text-lg text-slate-600 font-semibold mb-6">
+          {reservationCode ? `Reservation Code: ${reservationCode}` : 'AirVenture'}
+        </h3>
+        <h3 className="text-lg text-slate-600 font-semibold mb-6">
+          {seatCode ? `Seat Code: ${seatCode}` : 'AirVenture'}
+        </h3>
+      </div>
       <div className="flex flex-row space-x-12">
         <TimeFlightItem time={departureTime} locationCode={departureCode} />
         <div className="flex-1">

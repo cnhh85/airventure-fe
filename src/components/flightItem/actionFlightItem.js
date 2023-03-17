@@ -1,7 +1,12 @@
 import { formatNumberWithCommas } from '../../utils/parser'
 import Button from '../button'
 
-function actionFlightItem({ price = 0, isFullWidth = false, buttonProps = [] }) {
+function actionFlightItem({
+  ticketStatus = null,
+  price = 0,
+  isFullWidth = false,
+  buttonProps = [],
+}) {
   return (
     <div
       className={
@@ -18,17 +23,21 @@ function actionFlightItem({ price = 0, isFullWidth = false, buttonProps = [] }) 
         </div>
       </div>
       <div className={isFullWidth ? `flex flex-col my-auto space-y-4` : `mx-auto`}>
-        {buttonProps.map((buttonProp, index) => {
-          return (
-            <Button
-              key={index}
-              iconName={buttonProp.iconName}
-              content={buttonProp.buttonName}
-              onClick={buttonProp.onClickButton}
-              variant={buttonProp.variant}
-            />
-          )
-        })}
+        {buttonProps && buttonProps.length > 0 ? (
+          buttonProps.map((buttonProp, index) => {
+            return (
+              <Button
+                key={index}
+                iconName={buttonProp.iconName}
+                content={buttonProp.buttonName}
+                onClick={buttonProp.onClickButton}
+                variant={buttonProp.variant}
+              />
+            )
+          })
+        ) : (
+          <h2 className="text-2xl text-indigo-600 font-semibold">{ticketStatus}</h2>
+        )}
       </div>
     </div>
   )

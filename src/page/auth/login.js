@@ -1,6 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import { LOCALSTORAGE_TOKEN_NAME } from '../../config'
+import LocalStorageUtils from '../../utils/LocalStorageUtils'
+import authApis from '../../utils/api/authApis'
 
 const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const onEmailChange = (event) => {
+    setEmail(event.target.value)
+  }
+  const onPasswordChange = (event) => {
+    setPassword(event.target.value)
+  }
+
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      setErrorMessage('')
+      const promiseResult = await authApis.authenticate({ email, password })
+      const response = promiseResult.data
+      LocalStorageUtils.setItem(LOCALSTORAGE_TOKEN_NAME, response.data.accessToken)
+      window.location.href = '/account-management'
+    } catch (e) {
+      const response = e.response.data
+      if (response.statusCode === 401) {
+        setErrorMessage(response.message)
+      } else {
+        console.log(response)
+      }
+    }
+  }
+  const onGoogleLogin = async () => {
+    try {
+      setErrorMessage('')
+      window.location = 'http://localhost:3000/v1/api/auth/google'
+      // const response = promiseResult.data
+      // LocalStorageUtils.setItem(LOCALSTORAGE_TOKEN_NAME, response.data.accessToken)
+      // window.location.href = '/account-management'
+    } catch (e) {
+      // const response = e.response.data
+      // if (response.statusCode === 401) {
+      //   setErrorMessage(response.message)
+      // } else {
+      //   console.log(response)
+      // }
+    }
+  }
+
   return (
     <div className="w-[480px] h-fit mx-auto">
       <div className="top-50%">
@@ -14,6 +64,7 @@ const Login = () => {
         <a
           type="button"
           className="cursor-pointer text-[#1A1C1E] w-full border border-solid border-1 border-[#E0E0E0] hover:bg-[#f0f1f0] font-medium rounded-lg text-sm py-2.5 text-center flex items-center mx-auto my-4 duration-100"
+          onClick={onGoogleLogin}
         >
           <div className="mx-auto flex items-center">
             <svg
@@ -40,7 +91,7 @@ const Login = () => {
           <div className="w-1/3 border border-[#E0E0E0]"></div>
         </div>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <div className="mb-6">
             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">
               Email
@@ -48,6 +99,8 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              value={email}
+              onChange={onEmailChange}
               className="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 :bg-gray-700 :border-gray-600 :placeholder-gray-400 :text-white : :"
               placeholder="Input your email"
               required
@@ -63,14 +116,19 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={onPasswordChange}
               className="focus:outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 :bg-gray-700 :border-gray-600 :placeholder-gray-400 :text-white : :"
               placeholder="Input your password"
               required
             />
           </div>
 
+          {errorMessage ? <p className="text-red-500 mb-4 text-center">{errorMessage}</p> : null}
+
           <button
             type="submit"
+            // onClick={onSubmit}
             className="text-white w-full py-auto bg-[#3898D3] hover:bg-[#3898D3]/80 outline-none font-medium rounded-lg text-sm py-2.5 text-center duration-100"
           >
             Login

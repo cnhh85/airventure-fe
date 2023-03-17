@@ -64,19 +64,27 @@ class LocalStorageUtils {
       } else {
         if (token) {
           try {
-            const { memberId } = jwt_decode(token)
-            const fetchedUser = await get(`/api/user/${memberId}`, {}, { token: token }).then(
-              (res) => res.data.data
-            )
+            const { id } = jwt_decode(token)
+            const fetchedUser = await get(
+              `/v1/api/customers/get-by-account/${id}`,
+              {},
+              {},
+              { Authorization: `Bearer ${token}` }
+            ).then((res) => {
+              return res.data.data
+            })
 
             const simplifiedUser = {
-              id: fetchedUser.id,
-              member_id: fetchedUser.member_id,
-              last_name: fetchedUser.last_name,
-              first_name: fetchedUser.first_name,
-              school_email: fetchedUser.school_email,
+              accountId: fetchedUser?.account.id,
+              customerId: fetchedUser.id,
+              lastName: fetchedUser.lastName,
+              firstName: fetchedUser.firstName,
+              email: fetchedUser.account?.email,
+              gender: fetchedUser.gender,
+              phoneNumber: fetchedUser.phoneNumber,
+              role: fetchedUser?.account.role,
             }
-            const simplifiedAvatar = convertAvatar(fetchedUser.avartar)
+            const simplifiedAvatar = fetchedUser?.account.image
 
             this.setItem(LOCALSTORAGE_AVATAR_NAME, simplifiedAvatar)
             this.setItem(LOCALSTORAGE_USER_NAME, simplifiedUser)

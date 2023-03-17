@@ -37,7 +37,7 @@ function InputField({
           type={type}
           name={name}
           id={name}
-          placeholder={placeholder ? placeholder : `input your your ${toLower(label)}`}
+          placeholder={placeholder ? placeholder : `input your ${toLower(label)}`}
           value={value}
           onChange={onChange}
           className={`${widthClass} ${
