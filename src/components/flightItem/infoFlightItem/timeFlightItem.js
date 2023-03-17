@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { formatTime, getDayOfWeek } from '../../utils/parser'
+import { formatTime, getDayOfWeek } from '../../../utils/parser'
 
-function TimeFlightList({ time, locationCode }) {
+function TimeFlightItem({ time = null, locationCode = 'unknown' }) {
   return (
     <div className="flex flex-col space-y-4">
       <h4 className="font-semibold text-slate-400">{getDayOfWeek(time)}</h4>
@@ -12,4 +12,4 @@ function TimeFlightList({ time, locationCode }) {
   )
 }
 
-export default TimeFlightList
+export default TimeFlightItem
