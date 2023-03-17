@@ -1,6 +1,8 @@
 import { Fragment, useState } from 'react'
 
-import { FlightItem, Navbar } from '../../components'
+import { FlightItem, Navbar, Modal } from '../../components'
+
+import ConfirmModal from './confirmModal'
 
 function ReservationList() {
   const [flightDetail, setFlightDetail] = useState({
@@ -26,7 +28,9 @@ function ReservationList() {
     {
       buttonName: 'Cancel flight',
       iconName: 'close-outline',
-      onClickButton: () => {},
+      onClickButton: () => {
+        setShowModal(true)
+      },
       variant: 'outline',
     },
     {
@@ -36,8 +40,15 @@ function ReservationList() {
       variant: 'primary',
     },
   ]
+  const [showModal, setShowModal] = useState(false)
+  const handleModalClick = () => {
+    setShowModal(false)
+  }
   return (
     <Fragment>
+      <Modal showModal={showModal} onClick={handleModalClick}>
+        <ConfirmModal cancelModal={handleModalClick} />
+      </Modal>
       <Navbar />
       <h1 className="text-3xl font-semibold text-center my-8">Reservation</h1>
       <div className="w-4/5 mx-auto mb-4">

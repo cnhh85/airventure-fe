@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 
-import { FlightItem, Navbar } from '../../../components'
+import { FlightItem, Navbar, Filter } from '../../../components'
 
 function BookingHistory() {
   const [flightDetail, setFlightDetail] = useState({
@@ -30,7 +30,9 @@ function BookingHistory() {
       <Navbar />
       <h1 className="text-3xl font-semibold text-center my-8">Booking History</h1>
       <div className="grid grid-cols-12 w-4/5 mx-auto gap-6">
-        <div className="col-span-3 w-full bg-white rounded-xl">Filter</div>
+        <div className="col-span-3 w-full bg-white rounded-xl">
+          <Filter />
+        </div>
         <div className="col-span-9">
           <FlightItem
             price={flightDetail.price}
