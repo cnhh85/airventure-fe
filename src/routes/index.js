@@ -6,6 +6,7 @@ import AccountManagement from '../page/accountManagement/index.'
 import Auth from '../page/auth'
 import { LogoutRoute } from '../page/auth/logout'
 import FlightDetail from '../page/flightDetail'
+import Home from '../page/home'
 import PendingReservation from '../page/pendingReservation'
 import ReservationList from '../page/reservationList'
 import BookingHistory from '../page/user/bookingHistory'
@@ -29,7 +30,7 @@ const publicRoute = [
   {
     name: 'home',
     path: '/',
-    element: <div />,
+    element: <Home />,
   },
   {
     name: 'profile',

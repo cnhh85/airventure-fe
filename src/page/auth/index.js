@@ -9,8 +9,8 @@ const Auth = (props) => {
     <div className="max-h-screen">
       <div className="mx-auto grid grid-cols-12">
         <div className="col-span-5 h-screen relative overflow-hidden">
-          <div className="w-full text-center text-light-gray absolute top-[75%]">
-            <h3 className="font-medium text-4xl w-[480px] mx-auto mb-2">
+          <div className="w-full text-center text-[#C1C7CE] absolute top-[75%]">
+            <h3 className="font-medium text-4xl w-[480px] mx-auto mb-2 text-[#C1C7CE]">
               Travel in style with AirVenture
             </h3>
             <p className="text-[#C1C7CE] text-[15px] w-[480px] mx-auto">
