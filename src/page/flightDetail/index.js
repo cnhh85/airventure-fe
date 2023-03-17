@@ -32,7 +32,7 @@ function FlightDetail() {
         <ContactInfoModal cancelModal={handleModalClick} onClickBookFlight={() => {}} />
       </Modal>
       <Navbar />
-      <div className="grid grid-cols-12 w-4/5 mx-auto gap-6 my-10">
+      <div className="grid grid-cols-12 w-4/5 mx-auto gap-6 my-24">
         <div className="col-span-7 h-full bg-white rounded-xl divide-y-2">
           <div className="py-10 px-12 h-64">
             <InfoFlightItem
