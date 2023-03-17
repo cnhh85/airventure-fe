@@ -8,7 +8,6 @@ const GOOGLE_LOGIN_URL = API_URL + '/v1/api/auth/google'
 export default {
   // data = {email: "", password: ""}
   authenticate: (data) => {
-    console.log(AUTHENTICATE_URL)
     return post(AUTHENTICATE_URL, data)
   },
   //data = {firstName: "", lastName: "", gender: "", phoneNumber: "", email: "", password: ""}
