@@ -1,9 +1,9 @@
-import { API_URL, LOCALSTORAGE_TOKEN_NAME } from '../../config'
+import { LOCALSTORAGE_TOKEN_NAME } from '../../config'
 import { post } from '../ApiCaller'
 import LocalStorageUtils from '../LocalStorageUtils'
 
-const SEND_PAYMENT_EMAIL_URL = API_URL + '/v1/api/tickets/send-payment-email'
-const VERIFY_TRANSACTION_URL = API_URL + '/v1/api/invoices/verify-transaction'
+const SEND_PAYMENT_EMAIL_URL = '/v1/api/tickets/send-payment-email'
+const VERIFY_TRANSACTION_URL = '/v1/api/invoices/verify-transaction'
 
 export default {
   // {

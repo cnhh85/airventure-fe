@@ -1,17 +1,16 @@
-// import { API_URL } from '../../config'
 import { get, post } from '../ApiCaller'
 
-const BOOK_FLIGHT_URL = API_URL + '/v1/api/tickets'
-const GET_AIRPORT_URL = API_URL + '/v1/api/airports'
-const GET_AIRCRAFT_URL = API_URL + '/v1/api/aircrafts'
-const GET_FLIGHT_URL = API_URL + '/v1/api/flights'
-const RETRIEVE_TICKET_URL = API_URL + '/v1/api/tickets/retrieve'
-const SEARCH_FLIGHT_URL = API_URL + '/v1/api/flights/search'
-const CANCEL_TICKET_URL = API_URL + '/v1/api/tickets/cancel'
-const GET_SEAT_URL = API_URL + '/v1/api/seats'
-const GET_AVAILABLE_SEAT_URL = API_URL + '/v1/api/seats/available-seat/'
-const GET_FLIGHT_BY_ID_URL = API_URL + '/v1/api/flights/'
-const SEND_EMAIL_URL = API_URL + '/v1/api/tickets/send-email'
+const BOOK_FLIGHT_URL = '/v1/api/tickets'
+const GET_AIRPORT_URL = '/v1/api/airports'
+const GET_AIRCRAFT_URL = '/v1/api/aircrafts'
+const GET_FLIGHT_URL = '/v1/api/flights'
+const RETRIEVE_TICKET_URL = '/v1/api/tickets/retrieve'
+const SEARCH_FLIGHT_URL = '/v1/api/flights/search'
+const CANCEL_TICKET_URL = '/v1/api/tickets/cancel'
+const GET_SEAT_URL = '/v1/api/seats'
+const GET_AVAILABLE_SEAT_URL = '/v1/api/seats/available-seat/'
+const GET_FLIGHT_BY_ID_URL = '/v1/api/flights/'
+const SEND_EMAIL_URL = '/v1/api/tickets/send-email'
 
 export default {
   // {

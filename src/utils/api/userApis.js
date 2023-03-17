@@ -1,8 +1,8 @@
-import { API_URL, LOCALSTORAGE_TOKEN_NAME } from '../../config'
+import { LOCALSTORAGE_TOKEN_NAME } from '../../config'
 import { get } from '../ApiCaller'
 import LocalStorageUtils from '../LocalStorageUtils'
 
-const RETRIEVE_BOOKING_HISTORY_URL = API_URL + '/v1/api/accounts/booking-history'
+const RETRIEVE_BOOKING_HISTORY_URL = '/v1/api/accounts/booking-history'
 
 export default {
   // {

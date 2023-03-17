@@ -1,9 +1,9 @@
-import { API_URL, LOCALSTORAGE_TOKEN_NAME } from '../../config'
+import { LOCALSTORAGE_TOKEN_NAME } from '../../config'
 import { get, post, remove } from '../ApiCaller'
 import LocalStorageUtils from '../LocalStorageUtils'
 
-const GET_ACCOUNTS_URL = API_URL + '/v1/api/accounts'
-const DEACTIVATE_ACCOUNT_URL = API_URL + '/v1/api/accounts/'
+const GET_ACCOUNTS_URL = '/v1/api/accounts'
+const DEACTIVATE_ACCOUNT_URL = '/v1/api/accounts/'
 
 export default {
   getAccounts: () => {

@@ -5,7 +5,7 @@ import { API_URL } from '../config'
 
 export const request = (endpoint, method, headers = {}, params = {}, body = {}) => {
   return Axios({
-    url: API_URL + endpoint,
+    url:endpoint,
     method: method,
     headers: objectAssign({}, headers),
     params: objectAssign(params),
