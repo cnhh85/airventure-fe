@@ -13,8 +13,8 @@ export const request = (endpoint, method, headers = {}, params = {}, body = {}) 
   })
 }
 
-export const get = (endpoint, params = {}, headers = {}) => {
-  return request(endpoint, 'GET', headers, params)
+export const get = (endpoint, body = {}, params = {}, headers = {}) => {
+  return request(endpoint, 'GET', headers, params, body)
 }
 
 export const post = (endpoint, body = {}, params = {}, headers = {}) => {
