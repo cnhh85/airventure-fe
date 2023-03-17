@@ -1,4 +1,4 @@
-import API_URL from '../../config'
+import { API_URL } from '../../config'
 import { get, post } from '../ApiCaller'
 
 const AUTHENTICATE_URL = API_URL + '/v1/api/auth/login'
@@ -8,6 +8,7 @@ const GOOGLE_LOGIN_URL = API_URL + '/v1/api/auth/google'
 export default {
   // data = {email: "", password: ""}
   authenticate: (data) => {
+    console.log(AUTHENTICATE_URL)
     return post(AUTHENTICATE_URL, data)
   },
   //data = {firstName: "", lastName: "", gender: "", phoneNumber: "", email: "", password: ""}
