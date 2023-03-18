@@ -6,6 +6,7 @@ import InputField from './input'
 import Modal from './modal'
 import Navbar from './navbar'
 import Popover from './popover'
+import RadioButton from './radioButton'
 import SelectBox from './selectBox'
 
 export {
@@ -17,5 +18,6 @@ export {
   FlightItem,
   FlightDetailInfo,
   Filter,
+  RadioButton,
   SelectBox,
 }

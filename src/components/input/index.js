@@ -5,6 +5,8 @@ function InputField({
   name = null,
   label = null,
   type = 'text',
+  required = true,
+  readOnly = false,
   onChange,
   placeholder = null,
   iconName = null,
@@ -16,7 +18,7 @@ function InputField({
 
   return (
     <div className="mb-6">
-      <label htmlFor={name} className="mb-3 block text-base font-medium text-[#07074D]">
+      <label htmlFor={name} className="mb-3 block text-base font-medium text-slate-600">
         {label}
       </label>
       <div className="relative">
@@ -26,10 +28,12 @@ function InputField({
           </span>
         )}
         <input
+          readOnly={readOnly}
           type={type}
           name={name}
           id={name}
-          placeholder={placeholder ? placeholder : `input your your ${toLower(label)}`}
+          required={required}
+          placeholder={placeholder ? placeholder : `Input your ${toLower(label)}`}
           value={value}
           onChange={onChange}
           className={`${type == 'number' ? 'w-2/4' : 'w-full'} ${

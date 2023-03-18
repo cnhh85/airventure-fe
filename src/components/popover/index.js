@@ -9,12 +9,12 @@ function Popover({ children, options }) {
   }
 
   return (
-    <div className="ml-3 relative">
-      <div className="flex flex-row  ">
+    <div className="ml-4 relative z-50">
+      <div className="flex flex-row">
         <button onClick={toggleProfileMenu}>{children}</button>
       </div>
       {isOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg">
+        <div className="origin-top-right absolute right-0 mt-3 rounded-md shadow-lg">
           <div className="py-1 rounded-xl bg-white shadow-xs w-48">
             {options &&
               options.map((option, key) => (

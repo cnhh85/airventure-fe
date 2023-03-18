@@ -4,12 +4,14 @@ function Button({
   onClick,
   variant = 'primary',
   isWidthFull = false,
+  type = 'button',
 }) {
   switch (variant) {
     case 'primary':
       return (
         <button
           onClick={onClick}
+          type={type}
           className={`flex items-center justify-center bg-primary hover:bg-primaryHover text-white font-semibold py-3 px-7 rounded-xl ${
             isWidthFull ? 'w-full' : ''
           }`}
