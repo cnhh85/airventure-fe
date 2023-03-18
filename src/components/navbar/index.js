@@ -9,7 +9,7 @@ import Popover from '../popover'
 const navOptions = [
   {
     name: 'All Flight',
-    path: '/all-flight',
+    path: '/',
   },
   {
     name: 'Reservation',
