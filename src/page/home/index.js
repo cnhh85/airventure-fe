@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react'
+
 import { Navbar, SelectBox } from '../../components'
 
 import BackGround from '../../assets/img/homeBg.png'
 import SearchIcon from '../../assets/svg/search-outline.svg'
 import LocalStorageUtils from '../../utils/LocalStorageUtils'
+import bookingApis from '../../utils/api/bookingApis'
 
 const Home = () => {
   const URL = window.location.search
@@ -13,23 +16,49 @@ const Home = () => {
     window.location.href = '/'
   }
 
-  const departureArray = [
-    {
-      id: 1,
-      name: 'Ha Noi',
-    },
-    {
-      id: 2,
-      name: 'Ho Chi Minh',
-    },
-    {
-      id: 3,
-      name: 'Da Nang',
-    },
-  ]
+  const [flightList, setFlightList] = useState([])
+  const [airportList, setAirportList] = useState([])
+  // const [flightList, setFlightList] = useState([])
+  // const [flightList, setFlightList] = useState([])
+  const [searchDate, setSearchDate] = useState(null)
 
   const handleSelect = (option) => {
     setSelectedOption(option)
+  }
+
+  useEffect(() => {
+    const getFlightList = async () => {
+      const promiseResult = await bookingApis.getFlight()
+      setFlightList(promiseResult.data.data)
+    }
+    const getAirport = async () => {
+      const promiseResult = await bookingApis.getAirport()
+      setAirportList(promiseResult.data.data)
+      console.log(promiseResult.data.data)
+    }
+    getFlightList()
+    getAirport()
+  }, [])
+
+  const handleSearchDate = (date) => {
+    setSearchDate(date)
+  }
+
+  const filterFlight = async () => {
+    const dateArray = searchDate.split('/')
+
+    const yyyy = dateArray[2]
+    let mm = dateArray[1]
+    let dd = dateArray[0]
+
+    const formattedDay = yyyy + '-' + mm + '-' + dd
+
+    const searchResult = await bookingApis.searchFlight({
+      departureCode: 'DAD',
+      arrivalCode: 'VCA',
+      departDate: formattedDay,
+    })
+    setFlightList(searchResult.data.data)
   }
 
   return (
@@ -49,14 +78,14 @@ const Home = () => {
                 <SelectBox
                   placeHolder={'Choose your departure'}
                   label={'Departure'}
-                  selection={departureArray}
+                  selection={airportList}
                   onSelect={handleSelect}
                 />
                 <div className="border border-slate-200 z-30"></div>
                 <SelectBox
                   placeHolder={'Choose your destination'}
                   label={'Arrival'}
-                  selection={departureArray}
+                  selection={airportList}
                   onSelect={handleSelect}
                 />
               </div>
@@ -64,14 +93,15 @@ const Home = () => {
                 <SelectBox
                   placeHolder={'Add dates'}
                   label={'Departure Date'}
-                  selection={departureArray}
+                  selection={airportList}
                   onSelect={handleSelect}
                   type={'date'}
+                  value={handleSearchDate}
                 />
               </div>
 
               <div className="flex rounded-xl bg-primary w-[130px] ml-4 text-center items-center cursor-pointer hover:bg-primaryHover ">
-                <div className="flex flex-col space-y-1 m-auto">
+                <div className="flex flex-col space-y-1 m-auto" onClick={() => filterFlight()}>
                   <img src={SearchIcon} alt="" className="mx-auto" />
                   <p className="text-white font-semibold">Browse</p>
                 </div>

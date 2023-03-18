@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 
 import 'react-datepicker/dist/react-datepicker.css'
 
-function SelectBox({ placeHolder, label, selection, type }) {
+function SelectBox({ placeHolder, label, selection, type, value }) {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState(null)
   const [showCalendar, setShowCalendar] = useState(false)
@@ -24,12 +24,13 @@ function SelectBox({ placeHolder, label, selection, type }) {
 
   const handleSelect = (option) => {
     setSelectedOption(option)
+    value()
   }
 
   const handleDateChange = (date) => {
     setSelectedDate(date)
     setSelectedOption(date.toLocaleDateString('en-GB'))
-    console.log(selectedOption)
+    value(date.toLocaleDateString('en-GB'))
   }
 
   if (type !== 'date') {
@@ -48,7 +49,9 @@ function SelectBox({ placeHolder, label, selection, type }) {
               aria-haspopup="true"
             >
               <div className="mr-auto truncate max-w-[80%]">
-                {selectedOption ? selectedOption.name : placeHolder}
+                {selectedOption
+                  ? selectedOption.cityName + ' (' + selectedOption.code + ')'
+                  : placeHolder}
               </div>
               <span className="mt-1 text-slate-500">
                 {isOpen ? (
@@ -72,14 +75,13 @@ function SelectBox({ placeHolder, label, selection, type }) {
               <div className="py-1" role="none" key={item.id}>
                 <div className="py-1" role="none">
                   <div
-                    href="#"
                     className={`text-gray-700 z-10 block px-4 py-2 text-sm hover:bg-surface `}
                     role="menuitem"
                     tabIndex="-1"
                     id={`menu-item-${item.id}`}
                     onClick={() => handleSelect(item)}
                   >
-                    {item.name}
+                    {item.cityName}
                   </div>
                 </div>
               </div>
