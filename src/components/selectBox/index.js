@@ -24,7 +24,7 @@ function SelectBox({ placeHolder, label, selection, type, value }) {
 
   const handleSelect = (option) => {
     setSelectedOption(option)
-    value()
+    value(option.code)
   }
 
   const handleDateChange = (date) => {

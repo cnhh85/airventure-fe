@@ -18,8 +18,8 @@ const Home = () => {
 
   const [flightList, setFlightList] = useState([])
   const [airportList, setAirportList] = useState([])
-  // const [flightList, setFlightList] = useState([])
-  // const [flightList, setFlightList] = useState([])
+  const [searchDeparture, setSearchDeparture] = useState()
+  const [searchArrival, setSearchArrival] = useState()
   const [searchDate, setSearchDate] = useState(null)
 
   const handleSelect = (option) => {
@@ -44,6 +44,14 @@ const Home = () => {
     setSearchDate(date)
   }
 
+  const handleSearchDeparture = (code) => {
+    setSearchDeparture(code)
+  }
+
+  const handleSearchArrival = (code) => {
+    setSearchArrival(code)
+  }
+
   const filterFlight = async () => {
     const dateArray = searchDate.split('/')
 
@@ -54,8 +62,8 @@ const Home = () => {
     const formattedDay = yyyy + '-' + mm + '-' + dd
 
     const searchResult = await bookingApis.searchFlight({
-      departureCode: 'DAD',
-      arrivalCode: 'VCA',
+      departureCode: searchDeparture,
+      arrivalCode: searchArrival,
       departDate: formattedDay,
     })
     setFlightList(searchResult.data.data)
@@ -80,6 +88,7 @@ const Home = () => {
                   label={'Departure'}
                   selection={airportList}
                   onSelect={handleSelect}
+                  value={handleSearchDeparture}
                 />
                 <div className="border border-slate-200 z-30"></div>
                 <SelectBox
@@ -87,6 +96,7 @@ const Home = () => {
                   label={'Arrival'}
                   selection={airportList}
                   onSelect={handleSelect}
+                  value={handleSearchArrival}
                 />
               </div>
               <div className="w-[250px]">
