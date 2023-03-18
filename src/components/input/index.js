@@ -18,7 +18,7 @@ function InputField({
 
   return (
     <div className="mb-6">
-      <label htmlFor={name} className="mb-3 block text-base font-medium text-[#07074D]">
+      <label htmlFor={name} className="mb-3 block text-base font-medium text-slate-600">
         {label}
       </label>
       <div className="relative">

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 
-import { Navbar, InputField, Button } from '../../../components'
+import { Navbar, InputField, Button, RadioButton } from '../../../components'
 
 import { LOCALSTORAGE_TOKEN_NAME } from '../../../config'
 import { get, put } from '../../../utils/ApiCaller'
@@ -70,7 +70,7 @@ export const Profile = () => {
   return (
     <Fragment>
       <Navbar />
-      <div className="container my-10 rounded-xl bg-white w-[766px] m-auto p-16 ">
+      <div className="container my-10 rounded-xl bg-white w-2/4 m-auto p-16 ">
         <div className="flex flex-col w-3/4">
           <h2 className="text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
             User account settings
@@ -81,8 +81,8 @@ export const Profile = () => {
           </p>
         </div>
         <form onSubmit={onSaveChange}>
-          <div className="flex flex-row my-8 space-x-16">
-            <div className="flex flex-col w-4/6">
+          <div className="flex flex-row my-8 justify-between">
+            <div className="flex flex-col w-3/4">
               {/* <InputField label="Avatar" name="avatar" iconName="camera-outline" /> */}
               <div className="flex flex-row space-x-4">
                 <InputField
@@ -113,44 +113,24 @@ export const Profile = () => {
                   />
                 </div>
                 <div className="w-full basis-1/3">
-                  <label className="mb-2 block text-base font-medium text-[#07074D]">Gender</label>
-                  <div className="basis-1/2 flex justify-between items-center">
-                    <div className="flex items-center">
-                      <input
-                        id="gender-male"
-                        type="radio"
-                        value="Male"
-                        name="gender"
-                        onClick={onGenderChange}
-                        onChange={onGenderChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                        checked={gender === 'Male'}
-                      />
-                      <label
-                        htmlFor="gender-male"
-                        className="w-full py-4 ml-2 text-sm font-medium text-gray-900"
-                      >
-                        Male
-                      </label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        id="gender-female"
-                        type="radio"
-                        value="Female"
-                        name="gender"
-                        onClick={onGenderChange}
-                        onChange={onGenderChange}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                        checked={gender === 'Female'}
-                      />
-                      <label
-                        htmlFor="gender-female"
-                        className="w-full py-4 ml-2 text-sm font-medium text-gray-900"
-                      >
-                        Female
-                      </label>
-                    </div>
+                  <label className="mb-2 block text-base font-medium text-slate-600">Gender</label>
+                  <div className="flex justify-between items-center">
+                    <RadioButton
+                      onChange={onGenderChange}
+                      onClick={onGenderChange}
+                      checked={gender}
+                      value={'Male'}
+                      id={'gender-male'}
+                      name={'gender'}
+                    />
+                    <RadioButton
+                      onChange={onGenderChange}
+                      onClick={onGenderChange}
+                      checked={gender}
+                      value={'Female'}
+                      id={'gender-female'}
+                      name={'gender'}
+                    />
                   </div>
                 </div>
               </div>
@@ -176,9 +156,9 @@ export const Profile = () => {
               alt="Profile"
             />
           </div>
-          <div className="flex flex-row">
-            <Button type="" content="Save Change" variant="primary" />
+          <div className="flex flex-row justify-end">
             <Button content="Cancel" variant="transparent" />
+            <Button type="" content="Save Change" variant="primary" />
           </div>
         </form>
       </div>

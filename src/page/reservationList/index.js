@@ -117,33 +117,19 @@ function ReservationList() {
         <ConfirmModal cancelModal={handleModalClick} />
       </Modal>
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">Manage Reservation</h1>
+      <h1 className="text-3xl font-semibold text-center my-8">My Reservation</h1>
       <form className="w-1/3 mx-auto mb-10" onSubmit={onSearch}>
         <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
-              aria-hidden="true"
-              className="w-5 h-5 text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-primary">
+            <ion-icon style={{ fontSize: '24px' }} name="search-outline"></ion-icon>
           </div>
           <input
             type="search"
             id="default-search"
             value={reservationCode}
             onChange={onReservationCodeChange}
-            className="block w-full p-4 pl-10 text-lg text-gray-900 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500"
-            placeholder="Reservation Code Here"
+            className="block w-full p-4 pl-12 text-lg text-slate-600 rounded-lg "
+            placeholder="Input your reservation code here"
             required
           />
           <button

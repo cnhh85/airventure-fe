@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { InputField, Button } from '../../components'
+import { InputField, Button, RadioButton } from '../../components'
 
 import bookingApis from '../../utils/api/bookingApis'
 
@@ -31,7 +31,7 @@ function ContactInfoModal({ flightId = null, cancelModal, onClickBookFlight }) {
   }, [flightId])
 
   return (
-    <div className="bg-white w-2/5 rounded-xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-14 px-12 ">
+    <div className="bg-white w-2/5 rounded-xl fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-16 px-14 ">
       <div className=" flex flex-col space-y-2 mb-12">
         <h2 className="text-2xl font-semibold text-slate-600">
           Ticket booking contact information
@@ -75,7 +75,7 @@ function ContactInfoModal({ flightId = null, cancelModal, onClickBookFlight }) {
               />
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-8">
             <div className="basis-2/3">
               <InputField
                 value={email}
@@ -87,44 +87,24 @@ function ContactInfoModal({ flightId = null, cancelModal, onClickBookFlight }) {
               />
             </div>
             <div className="w-full basis-1/3">
-              <label className="mb-2 block text-base font-medium text-[#07074D]">Gender</label>
-              <div className="basis-1/2 flex justify-between items-center">
-                <div className="flex items-center">
-                  <input
-                    id="gender-male"
-                    type="radio"
-                    value="Male"
-                    name="gender"
-                    onClick={onGenderChange}
-                    onChange={onGenderChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                    checked={gender === 'Male'}
-                  />
-                  <label
-                    htmlFor="gender-male"
-                    className="w-full py-4 ml-2 text-sm font-medium text-gray-900"
-                  >
-                    Male
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    id="gender-female"
-                    type="radio"
-                    value="Female"
-                    name="gender"
-                    onClick={onGenderChange}
-                    onChange={onGenderChange}
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                    checked={gender === 'Female'}
-                  />
-                  <label
-                    htmlFor="gender-female"
-                    className="w-full py-4 ml-2 text-sm font-medium text-gray-900"
-                  >
-                    Female
-                  </label>
-                </div>
+              <label className="mb-2 block text-base font-medium text-slate-600">Gender</label>
+              <div className="flex justify-between items-center">
+                <RadioButton
+                  onChange={onGenderChange}
+                  onClick={onGenderChange}
+                  checked={gender}
+                  value={'Male'}
+                  id={'gender-male'}
+                  name={'gender'}
+                />
+                <RadioButton
+                  onChange={onGenderChange}
+                  onClick={onGenderChange}
+                  checked={gender}
+                  value={'Female'}
+                  id={'gender-female'}
+                  name={'gender'}
+                />
               </div>
             </div>
           </div>
@@ -139,7 +119,7 @@ function ContactInfoModal({ flightId = null, cancelModal, onClickBookFlight }) {
               />
             </div>
             <div className="basis-1/2">
-              <label htmlFor="seatCode" className="mb-3 block text-base font-medium text-[#07074D]">
+              <label htmlFor="seatCode" className="mb-3 block text-base font-medium text-slate-600">
                 Seat
               </label>
               <select
@@ -147,7 +127,7 @@ function ContactInfoModal({ flightId = null, cancelModal, onClickBookFlight }) {
                 onChange={onSeatCodeChange}
                 value={seatCode}
                 defaultValue=""
-                className="w-full p-2.5 rounded-md border border-[#e0e0e0] bg-white py-2 px-4 text-base font-medium text-[#6B7280] outline-none focus:border-primary"
+                className="w-full  rounded-md border border-[#e0e0e0] bg-white pt-2.5 pb-2 text-base px-4 text-base font-medium text-slate-500 outline-none focus:border-primary"
               >
                 <option selected>Choose seat</option>
                 {availableSeats && availableSeats.length > 0
