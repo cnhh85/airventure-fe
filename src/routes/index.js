@@ -9,6 +9,7 @@ import FlightDetail from '../page/flightDetail'
 import Home from '../page/home'
 import PendingReservation from '../page/pendingReservation'
 import ReservationList from '../page/reservationList'
+import SuccessPage from '../page/successPage'
 import BookingHistory from '../page/user/bookingHistory'
 import Profile from '../page/user/profile'
 import { AdministratorRoute } from './AdminRoute'
@@ -51,6 +52,11 @@ const publicRoute = [
     name: 'flight-detail',
     path: '/flight-detail',
     element: <FlightDetail />,
+  },
+  {
+    name: 'success',
+    path: '/success',
+    element: <SuccessPage />,
   },
 ]
 export const privateRoute = [
