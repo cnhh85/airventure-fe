@@ -117,7 +117,7 @@ function ReservationList() {
         <ConfirmModal cancelModal={handleModalClick} />
       </Modal>
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">My Reservation</h1>
+      <h1 className="text-3xl font-semibold text-center my-8 mt-40">My Reservation</h1>
       <form className="w-1/3 mx-auto mb-10" onSubmit={onSearch}>
         <div className="relative">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-primary">

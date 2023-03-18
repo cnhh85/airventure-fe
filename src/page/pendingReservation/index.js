@@ -95,7 +95,7 @@ function PendingReservation() {
         <ConfirmModal cancelModal={handleModalClick} />
       </Modal> */}
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">Pending Reservation</h1>
+      <h1 className="text-3xl font-semibold text-center my-8 mt-40">Pending Reservation</h1>
       <div className="w-3/5 mx-auto mb-20 flex flex-col gap-6">
         {pendingFlights && pendingFlights.length > 0
           ? pendingFlights.map((flight) => (

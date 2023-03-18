@@ -1,13 +1,23 @@
 import { Fragment } from 'react'
 
-function SuccessPage() {
+import { formatNumberWithCommas } from '../../utils/parser'
+
+function SuccessPage({}) {
+  const URL = window.location.search
+  const urlParams = new URLSearchParams(URL)
+  const reservationCode = urlParams.get('reservationCode')
+  const price = urlParams.get('price')
+
   return (
     <Fragment>
       <div className="bg-white h-screen">
         <div className="w-2/3 m-auto grid grid-cols-12 bg-white h-screen">
           <div className="col-span-6">
             <div className=" ml-auto mt-28">
-              <button className="flex flex-row self-center text-xl mr-4 text-slate-500 my-7 hover:text-primary">
+              <button
+                onClick={() => (window.location = '/')}
+                className="flex flex-row self-center text-xl mr-4 text-slate-500 my-7 hover:text-primary"
+              >
                 <span className=" self-center text-xl mr-4">
                   <ion-icon size="large" name="arrow-back-outline"></ion-icon>
                 </span>
@@ -36,12 +46,14 @@ function SuccessPage() {
 
                   <div className="flex flex-col justify-between mt-8">
                     <h2 className="text font-medium text-slate-400">Amount</h2>
-                    <h4 className="text font-semibold text-xl text-slate-600">1,260,000 VND</h4>
+                    <h4 className="text font-semibold text-xl text-slate-600">
+                      {formatNumberWithCommas(Number.parseInt(price))} VND
+                    </h4>
                   </div>
                   <div className="flex flex-col justify-between mt-8">
                     <h2 className="text font-medium text-slate-400">Transfer Description</h2>
                     <h4 className="text font-semibold text-xl text-slate-600">
-                      AirVenture ID3429874
+                      AirVenture {reservationCode}
                     </h4>
                   </div>
                 </div>

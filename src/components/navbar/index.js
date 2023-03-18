@@ -8,7 +8,7 @@ import Popover from '../popover'
 
 const navOptions = [
   {
-    name: 'All Flight',
+    name: 'Home',
     path: '/',
   },
   {
@@ -40,6 +40,15 @@ const administratorProfileOptions = [
     name: 'Accounts',
     path: '/account-management',
     iconName: 'people-outline',
+  },
+  ...profileOptions,
+]
+
+const employeeProfileOptions = [
+  {
+    name: 'Pending',
+    path: '/pending-reservation',
+    iconName: 'airplane-outline',
   },
   ...profileOptions,
 ]
@@ -92,7 +101,11 @@ function Navbar() {
         {user ? (
           <Popover
             options={
-              user && user.role === 'Administrator' ? administratorProfileOptions : profileOptions
+              user && user.role === 'Administrator'
+                ? administratorProfileOptions
+                : user.role === 'Employee'
+                ? employeeProfileOptions
+                : profileOptions
             }
           >
             <div className="flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out border border-solid border-[#DBDBDB] px-2 py-1 rounded-full">

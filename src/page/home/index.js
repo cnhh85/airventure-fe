@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Navbar, SelectBox } from '../../components'
+import { FlightItem, Navbar, SelectBox } from '../../components'
 
 import BackGround from '../../assets/img/homeBg.png'
 import SearchIcon from '../../assets/svg/search-outline.svg'
@@ -21,24 +21,57 @@ const Home = () => {
   const [searchDeparture, setSearchDeparture] = useState()
   const [searchArrival, setSearchArrival] = useState()
   const [searchDate, setSearchDate] = useState(null)
+  const buttonProps = [
+    {
+      buttonName: 'View Detail',
+      iconName: 'eye-outline',
+      onClickButton: () => {},
+      variant: 'primary',
+    },
+  ]
+  const mapButtonProps = (flightId, buttonProps) => {
+    const result = []
+    result.push({
+      ...buttonProps[0],
+      onClickButton: () => {
+        window.location.href = `/flight-detail?flightId=${flightId}`
+      },
+    })
+    return result
+  }
+
+  const departureArray = [
+    {
+      id: 1,
+      name: 'Ha Noi',
+    },
+    {
+      id: 2,
+      name: 'Ho Chi Minh',
+    },
+    {
+      id: 3,
+      name: 'Da Nang',
+    },
+  ]
 
   const handleSelect = (option) => {
     setSelectedOption(option)
   }
 
   useEffect(() => {
-    const getFlightList = async () => {
-      const promiseResult = await bookingApis.getFlight()
-      setFlightList(promiseResult.data.data)
-    }
+    // const getFlightList = async () => {
+    //   const promiseResult = await bookingApis.getFlight()
+    //   setFlightList(promiseResult.data.data)
+    // }
     const getAirport = async () => {
       const promiseResult = await bookingApis.getAirport()
       setAirportList(promiseResult.data.data)
       console.log(promiseResult.data.data)
     }
-    getFlightList()
+    // getFlightList()
     getAirport()
-  }, [])
+  }, [flightList])
 
   const handleSearchDate = (date) => {
     setSearchDate(date)
@@ -66,8 +99,10 @@ const Home = () => {
       arrivalCode: searchArrival,
       departDate: formattedDay,
     })
+    console.log(searchResult.data.data)
     setFlightList(searchResult.data.data)
   }
+  console.log(flightList)
 
   return (
     <div className="min-h-screen">
@@ -87,7 +122,7 @@ const Home = () => {
                   placeHolder={'Choose your departure'}
                   label={'Departure'}
                   selection={airportList}
-                  onSelect={handleSelect}
+                  // onSelect={handleSelect}
                   value={handleSearchDeparture}
                 />
                 <div className="border border-slate-200 z-30"></div>
@@ -95,7 +130,7 @@ const Home = () => {
                   placeHolder={'Choose your destination'}
                   label={'Arrival'}
                   selection={airportList}
-                  onSelect={handleSelect}
+                  // onSelect={handleSelect}
                   value={handleSearchArrival}
                 />
               </div>
@@ -104,7 +139,7 @@ const Home = () => {
                   placeHolder={'Add dates'}
                   label={'Departure Date'}
                   selection={airportList}
-                  onSelect={handleSelect}
+                  // onSelect={handleSelect}
                   type={'date'}
                   value={handleSearchDate}
                 />
@@ -116,6 +151,50 @@ const Home = () => {
                   <p className="text-white font-semibold">Browse</p>
                 </div>
               </div>
+            </div>
+            <div className="mt-20 flex flex-col gap-4 mb-10 pb-20">
+              {flightList
+                ? flightList.map((flight) => (
+                    <FlightItem
+                      key={flight.id}
+                      price={flight.price}
+                      departureTime={flight.departTime}
+                      arrivalTime={flight.arriveTime}
+                      departureCode={flight.departure?.code}
+                      arrivalCode={flight.arrival?.code}
+                      isFullWidth={false}
+                      buttonProps={mapButtonProps(flight.id, buttonProps)}
+                    />
+                  ))
+                : 'Nothing'}
+
+              {/* <FlightItem
+                price={20000}
+                departureTime={'2023-03-19T17:20:00Z'}
+                arrivalTime={'2023-03-19T18:30:00Z'}
+                departureCode={'SGN'}
+                arrivalCode={'DAD'}
+                isFullWidth={false}
+                buttonProps={buttonProps}
+              />
+              <FlightItem
+                price={20000}
+                departureTime={'2023-03-19T17:20:00Z'}
+                arrivalTime={'2023-03-19T18:30:00Z'}
+                departureCode={'SGN'}
+                arrivalCode={'DAD'}
+                isFullWidth={false}
+                buttonProps={buttonProps}
+              />
+              <FlightItem
+                price={20000}
+                departureTime={'2023-03-19T17:20:00Z'}
+                arrivalTime={'2023-03-19T18:30:00Z'}
+                departureCode={'SGN'}
+                arrivalCode={'DAD'}
+                isFullWidth={false}
+                buttonProps={buttonProps}
+              /> */}
             </div>
           </div>
         </div>

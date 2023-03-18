@@ -28,6 +28,7 @@ function SelectBox({ placeHolder, label, selection, type, value }) {
   }
 
   const handleDateChange = (date) => {
+    console.log(date)
     setSelectedDate(date)
     setSelectedOption(date.toLocaleDateString('en-GB'))
     value(date.toLocaleDateString('en-GB'))
