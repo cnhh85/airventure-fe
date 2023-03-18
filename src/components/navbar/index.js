@@ -5,11 +5,7 @@ import Popover from '../popover'
 const navOptions = [
   {
     name: 'All Flight',
-    path: '/all-flight',
-  },
-  {
-    name: 'Schedule',
-    path: '/schedule',
+    path: '/',
   },
   {
     name: 'Reservation',
@@ -37,7 +33,7 @@ const profileOptions = [
 
 function Navbar() {
   return (
-    <nav className="bg-white h-67 flex items-center justify-between px-32 py-4">
+    <nav className="bg-white h-67 flex items-center justify-between px-32 py-4 fixed top-0 z-50 w-full">
       <div className="text-center">
         <a href="/" className="font-bold text-xl">
           AirVenture

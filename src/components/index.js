@@ -6,5 +6,16 @@ import InputField from './input'
 import Modal from './modal'
 import Navbar from './navbar'
 import Popover from './popover'
+import SelectBox from './selectBox'
 
-export { Button, InputField, Navbar, Modal, Popover, FlightItem, FlightDetailInfo, Filter }
+export {
+  Button,
+  InputField,
+  Navbar,
+  Modal,
+  Popover,
+  FlightItem,
+  FlightDetailInfo,
+  Filter,
+  SelectBox,
+}
