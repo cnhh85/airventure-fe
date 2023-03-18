@@ -51,19 +51,21 @@ function Navbar() {
   useEffect(() => {
     const jwtUser = LocalStorageUtils.getJWTUser()
     const token = LocalStorageUtils.getToken()
-    const getUserInfo = async () => {
-      // const user = await LocalStorageUtils.getUser()
-      const promiseResult = await get(
-        `/v1/api/customers/get-by-account/${jwtUser.id}`,
-        {},
-        {},
-        { Authorization: `Bearer ${token}` }
-      )
-      const user = promiseResult.data.data
-      setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
-      setImage(user.account?.image)
+    if (jwtUser) {
+      const getUserInfo = async () => {
+        // const user = await LocalStorageUtils.getUser()
+        const promiseResult = await get(
+          `/v1/api/customers/get-by-account/${jwtUser.id}`,
+          {},
+          {},
+          { Authorization: `Bearer ${token}` }
+        )
+        const user = promiseResult.data.data
+        setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
+        setImage(user.account?.image)
+      }
+      getUserInfo()
     }
-    getUserInfo()
   }, [])
 
   const user = LocalStorageUtils.getJWTUser()
@@ -87,42 +89,51 @@ function Navbar() {
             </Link>
           ))}
         </div>
-        <Popover
-          options={
-            user && user.role === 'Administrator' ? administratorProfileOptions : profileOptions
-          }
-        >
-          <div className="flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out border border-solid border-[#DBDBDB] px-2 py-1 rounded-full">
-            {user && userInfo ? (
-              <>
-                <img
-                  className="h-8 w-8 rounded-full object-cover"
-                  src={
-                    image
-                      ? image
-                      : `https://avatar.oxro.io/avatar.svg?name=${[
-                          userInfo.firstName,
-                          userInfo.lastName,
-                        ].join('+')}&caps=3&bold=true`
-                  }
-                  alt="Profile"
-                />
-                <div className="text-gray-700 text-sm font-semibold ml-2">
-                  {`${userInfo.firstName} ${userInfo.lastName}`}
-                </div>
-              </>
-            ) : (
-              <>
-                <img
-                  className="h-8 w-8 rounded-full object-cover"
-                  src={'https://randomuser.me/api/portraits/women/68.jpg'}
-                  alt="Profile"
-                />
-                <div className="text-gray-700 text-sm font-semibold ml-2">User</div>
-              </>
-            )}
-          </div>
-        </Popover>
+        {user ? (
+          <Popover
+            options={
+              user && user.role === 'Administrator' ? administratorProfileOptions : profileOptions
+            }
+          >
+            <div className="flex items-center text-sm focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out border border-solid border-[#DBDBDB] px-2 py-1 rounded-full">
+              {user && userInfo ? (
+                <>
+                  <img
+                    className="h-8 w-8 rounded-full object-cover"
+                    src={
+                      image
+                        ? image
+                        : `https://avatar.oxro.io/avatar.svg?name=${[
+                            userInfo.firstName,
+                            userInfo.lastName,
+                          ].join('+')}&caps=3&bold=true`
+                    }
+                    alt="Profile"
+                  />
+                  <div className="text-gray-700 text-sm font-semibold ml-2">
+                    {`${userInfo.firstName} ${userInfo.lastName}`}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <img
+                    className="h-8 w-8 rounded-full object-cover"
+                    src={'https://randomuser.me/api/portraits/women/68.jpg'}
+                    alt="Profile"
+                  />
+                  <div className="text-gray-700 text-sm font-semibold ml-2">User</div>
+                </>
+              )}
+            </div>
+          </Popover>
+        ) : (
+          <a
+            href="/login"
+            className="cursor-pointer border border-1 rounded-lg px-4 py-2 text-gray-700 text-sm font-semibold"
+          >
+            Login
+          </a>
+        )}
       </div>
     </nav>
   )
