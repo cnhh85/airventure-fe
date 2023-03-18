@@ -1,9 +1,11 @@
 export function formatDate(dateString) {
   const date = new Date(dateString)
+  console.log(date)
   const formattedDate = date.toLocaleDateString('en-GB', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
+    timeZone: 'Europe/London',
   })
   return formattedDate.replace(/\//g, '/')
 }
@@ -20,6 +22,7 @@ export function formatTime(timeString) {
   const formattedTime = date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
+    timeZone: 'Europe/London',
   })
   return formattedTime.replace(/ /g, '')
 }

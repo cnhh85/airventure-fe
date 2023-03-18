@@ -51,7 +51,7 @@ export default {
   // 	"departDate":
   // }
   searchFlight: (data) => {
-    return get(SEARCH_FLIGHT_URL, data)
+    return post(SEARCH_FLIGHT_URL, data)
   },
   // {
   // 	"reservationCode": "iLzDZI"

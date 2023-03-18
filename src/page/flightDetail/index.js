@@ -1,5 +1,6 @@
 import { useState, Fragment, useEffect } from 'react'
 
+// import { Navigate } from 'react-router'
 import { FlightDetailInfo, Navbar, Button, Modal } from '../../components'
 import InfoFlightItem from '../../components/flightItem/infoFlightItem'
 
@@ -8,8 +9,13 @@ import bookingApis from '../../utils/api/bookingApis'
 import { formatNumberWithCommas } from '../../utils/parser'
 import ContactInfoModal from './contactInfoModal'
 
-function FlightDetail({ flightId = null }) {
+function FlightDetail({}) {
   const [showModal, setShowModal] = useState(false)
+  const [successInfo, setSuccessInfo] = useState(null)
+
+  const URL = window.location.search
+  const urlParams = new URLSearchParams(URL)
+  const flightId = urlParams.get('flightId')
 
   const [flightDetail, setFlightDetail] = useState({
     aircraftCode: 'ABA254',
@@ -30,7 +36,7 @@ function FlightDetail({ flightId = null }) {
 
   useEffect(() => {
     const getFlightDetail = async () => {
-      const promiseResult = await bookingApis.getFlightById('1ae439b7-5f8e-4470-b2d8-d91f20e809a9')
+      const promiseResult = await bookingApis.getFlightById(flightId)
       const response = promiseResult.data.data
       setFlightDetail((prev) => ({
         ...prev,
@@ -49,7 +55,7 @@ function FlightDetail({ flightId = null }) {
       }))
     }
     getFlightDetail()
-  }, [])
+  }, [flightId])
 
   const onBookFlight = async (contactInfo, onError) => {
     const user = LocalStorageUtils.getJWTUser()
@@ -63,7 +69,7 @@ function FlightDetail({ flightId = null }) {
           email: contactInfo.email,
           phoneNumber: contactInfo.phoneNumber,
         },
-        flightId: '1ae439b7-5f8e-4470-b2d8-d91f20e809a9',
+        flightId: flightId,
         seatCode: contactInfo.seatCode,
         price: flightDetail?.price + flightDetail?.price * 0.05,
       }
@@ -164,6 +170,9 @@ function FlightDetail({ flightId = null }) {
       //     "modifiedAt": "2023-03-17T14:37:02.510Z"
       // }
       setShowModal(false)
+      window.location.href = `/success?reservationCode=${response.reservationCode}&price=${response.price}`
+      // setSuccessInfo({ reservationCode: response.reservationCode, price: response.price })
+      // console.log(successInfo)
     } catch (e) {
       const response = e.response?.data
       if (response && (response.statusCode === 400 || response.statusCode === 401)) {
@@ -244,6 +253,9 @@ function FlightDetail({ flightId = null }) {
           </div>
         </div>
       </div>
+      {/* {successInfo && successInfo.reservationCode && successInfo.price ? (
+        <Navigate to={'/success'} state={successInfo} replace />
+      ) : null} */}
     </Fragment>
   )
 }

@@ -51,7 +51,7 @@ function BookingHistory() {
   return (
     <Fragment>
       <Navbar />
-      <h1 className="text-3xl font-semibold text-center my-8">Booking History</h1>
+      <h1 className="text-3xl font-semibold text-center my-8 mt-40">Booking History</h1>
       <div className="grid grid-cols-12 w-4/5 mx-auto gap-6 pb-20 pt-10">
         <div className="flex flex-col gap-4 col-span-12">
           {flights && flights.length > 0

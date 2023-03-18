@@ -32,43 +32,15 @@ export const AccountManagement = () => {
     fetchAccounts()
   }, [])
   return (
-    <div className="bg-surface h-screen mb-10">
+    <div className="bg-surface min-h-screen pb-10">
       <Navbar />
-      {/* <div className="container my-12 rounded-xl bg-white w-11 w-[766px] m-auto p-16 ">
-        <div className="flex flex-col w-3/4">
-          <h2 className="text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
-            User account settings
-          </h2>
-          <p className="mt-4 text-base text-gray-500">
-            Update and manage your personal information for a better experience in connecting with
-            AirVenture.
-          </p>
-        </div>
-        <div className="flex flex-row my-8 space-x-16">
-          <div className="flex flex-col w-4/6">
-            <InputField label="Avatar" name="avatar" iconName="camera-outline" />
-            <div className="flex flex-row space-x-4">
-              <InputField label="Last Name" name="name" iconName="person-outline" />
-              <InputField label="First Name" name="username" iconName="person-outline" />
-            </div>
-            <InputField label="Email" name="email" iconName="mail-outline" />
-            <InputField label="Phone" type={'number'} iconName="call-outline" />
-          </div>
-          <img
-            src="https://randomuser.me/api/portraits/women/68.jpg"
-            className="h-28 w-28 m-2 rounded-full object-cover"
-            alt="Profile"
-          />
-        </div>
-        <div className="flex flex-row">
-          <Button content="Save Change" variant="primary" />
-          <Button content="Cancel" variant="transparent" />
-        </div>
-      </div> */}
-      <div className="container my-12 rounded-xl w-5/6 m-auto flex justify-end">
-        <Button content={'Create new employee'} />
+      <div className="container mt-40 mx-auto w-5/6 flex justify-center">
+        <h1 className="text-3xl font-semibold text-center my-8">Accounts Management</h1>
       </div>
-      <div className="container my-12 rounded-xl bg-white w-5/6 m-auto mb-20">
+      {/* <div className="container my-12 rounded-xl w-5/6 m-auto flex justify-end">
+        <Button content={'Create new employee'} />
+      </div> */}
+      <div className="mt-20 rounded-xl bg-white w-5/6 m-auto mb-20">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-gray-500">
             <thead className="text-base text-gray-700 bg-gray-50">
