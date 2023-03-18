@@ -30,19 +30,19 @@ function Filter() {
 
         <div className="">
           <label htmlFor="lowToHigh">
-            <input type="radio" name="priceSort" id="lowToHigh" className="mr-4" />
-            lasted to oldest
+            <input type="radio" name="historySort" id="lowToHigh" className="mr-4" />
+            Lasted to oldest
           </label>
         </div>
         <div className="">
           <label htmlFor="highToLow">
-            <input type="radio" name="priceSort" id="highToLow" className="mr-4" />
-            oldest to lasted
+            <input type="radio" name="historySort" id="highToLow" className="mr-4" />
+            Oldest to lasted
           </label>
         </div>
         <div className="">
           <label htmlFor="default">
-            <input type="radio" name="priceSort" id="default" className="mr-4" defaultChecked />
+            <input type="radio" name="historySort" id="default" className="mr-4" defaultChecked />
             Default
           </label>
         </div>

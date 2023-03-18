@@ -69,7 +69,7 @@ function Navbar() {
   const user = LocalStorageUtils.getJWTUser()
 
   return (
-    <nav className="bg-white h-67 flex items-center justify-between px-32 py-4">
+    <nav className="bg-white h-67 flex items-center justify-between px-32 py-4 fixed top-0 z-50 w-full">
       <div className="text-center">
         <a href="/" className="font-bold text-xl">
           AirVenture

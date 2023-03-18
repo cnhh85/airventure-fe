@@ -7,6 +7,7 @@ import Modal from './modal'
 import Navbar from './navbar'
 import Popover from './popover'
 import RadioButton from './radioButton'
+import SelectBox from './selectBox'
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   FlightDetailInfo,
   Filter,
   RadioButton,
+  SelectBox,
 }
