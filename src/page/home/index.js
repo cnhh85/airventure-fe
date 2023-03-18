@@ -2,8 +2,17 @@ import { Navbar, SelectBox } from '../../components'
 
 import BackGround from '../../assets/img/homeBg.png'
 import SearchIcon from '../../assets/svg/search-outline.svg'
+import LocalStorageUtils from '../../utils/LocalStorageUtils'
 
 const Home = () => {
+  const URL = window.location.search
+  const urlParams = new URLSearchParams(URL)
+  const token = urlParams.get('token')
+  if (token) {
+    LocalStorageUtils.setItem('token', token)
+    window.location.href = '/'
+  }
+
   const departureArray = [
     {
       id: 1,

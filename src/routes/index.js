@@ -13,35 +13,16 @@ import SuccessPage from '../page/successPage'
 import BookingHistory from '../page/user/bookingHistory'
 import Profile from '../page/user/profile'
 import { AdministratorRoute } from './AdminRoute'
+import { AuthRoute } from './AuthRoute'
 import { EmployeeRoute } from './EmployeeRoute'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
 
 const publicRoute = [
   {
-    name: 'login',
-    path: '/login',
-    element: <Auth page="login" />,
-  },
-  {
-    name: 'register',
-    path: '/register',
-    element: <Auth page="register" />,
-  },
-  {
     name: 'home',
     path: '/',
     element: <Home />,
-  },
-  {
-    name: 'profile',
-    path: '/profile',
-    element: <Profile />,
-  },
-  {
-    name: 'history',
-    path: '/history',
-    element: <BookingHistory />,
   },
   {
     name: 'reservation',
@@ -65,6 +46,16 @@ export const privateRoute = [
     path: '/logout',
     element: <LogoutRoute />,
   },
+  {
+    name: 'profile',
+    path: '/profile',
+    element: <Profile />,
+  },
+  {
+    name: 'history',
+    path: '/history',
+    element: <BookingHistory />,
+  },
 ]
 export const administratorRoute = [
   {
@@ -78,6 +69,18 @@ export const employeeRoute = [
     name: 'pending-reservation',
     path: '/pending-reservation',
     element: <PendingReservation />,
+  },
+]
+export const authRoute = [
+  {
+    name: 'login',
+    path: '/login',
+    element: <Auth page="login" />,
+  },
+  {
+    name: 'register',
+    path: '/register',
+    element: <Auth page="register" />,
   },
 ]
 
@@ -101,6 +104,11 @@ const Switch = () => {
       </Route>
       <Route element={<EmployeeRoute />}>
         {employeeRoute.map((route) => (
+          <Route key={route.name} exact={true} path={route.path} element={route.element} />
+        ))}
+      </Route>
+      <Route element={<AuthRoute />}>
+        {authRoute.map((route) => (
           <Route key={route.name} exact={true} path={route.path} element={route.element} />
         ))}
       </Route>

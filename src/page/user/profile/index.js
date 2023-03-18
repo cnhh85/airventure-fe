@@ -25,23 +25,25 @@ export const Profile = () => {
   useEffect(() => {
     const jwtUser = LocalStorageUtils.getJWTUser()
     const token = LocalStorageUtils.getToken()
-    const getUserInfo = async () => {
-      const promiseResult = await get(
-        `/v1/api/customers/get-by-account/${jwtUser.id}`,
-        {},
-        {},
-        { Authorization: `Bearer ${token}` }
-      )
-      const user = promiseResult.data.data
-      setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
-      setImage(user.account?.image)
-      setFirstName(user.firstName)
-      setEmail(user.account?.email)
-      setGender(user.gender)
-      setLastName(user.lastName)
-      setPhoneNumber(user.phoneNumber)
+    if (jwtUser) {
+      const getUserInfo = async () => {
+        const promiseResult = await get(
+          `/v1/api/customers/get-by-account/${jwtUser.id}`,
+          {},
+          {},
+          { Authorization: `Bearer ${token}` }
+        )
+        const user = promiseResult.data.data
+        setUserInfo({ customerId: user.id, firstName: user.firstName, lastName: user.lastName })
+        setImage(user.account?.image)
+        setFirstName(user.firstName)
+        setEmail(user.account?.email)
+        setGender(user.gender)
+        setLastName(user.lastName)
+        setPhoneNumber(user.phoneNumber)
+      }
+      getUserInfo()
     }
-    getUserInfo()
   }, [])
 
   const onSaveChange = async (event) => {
@@ -70,7 +72,7 @@ export const Profile = () => {
   return (
     <Fragment>
       <Navbar />
-      <div className="container my-10 rounded-xl bg-white w-2/4 m-auto p-16 ">
+      <div className="container my-10 rounded-xl bg-white w-2/4 m-auto p-16 mt-40">
         <div className="flex flex-col w-3/4">
           <h2 className="text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:tracking-tight">
             User account settings
